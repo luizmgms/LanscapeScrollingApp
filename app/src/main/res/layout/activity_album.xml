@@ -134,7 +134,7 @@
         android:id="@+id/fabBackId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/margin_of_fabs_player"
         android:src="@drawable/ic_back"
         android:backgroundTint="@android:color/black"
         app:borderWidth="0dp"
@@ -146,7 +146,7 @@
         android:id="@+id/fabAddAllId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="@dimen/margin_of_fabs_player"
         android:src="@drawable/ic_add_all"
         android:backgroundTint="@android:color/black"
         app:borderWidth="0dp"
@@ -159,7 +159,8 @@
         app:fabCustomSize="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="@dimen/margin_of_fabs_player"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/ic_previous"
         android:backgroundTint="@android:color/black"
         app:borderWidth="0dp"
@@ -171,7 +172,8 @@
         android:id="@+id/fabPlayListId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="@dimen/margin_of_fabs_player"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/ic_play"
         android:backgroundTint="@android:color/black"
         app:borderWidth="0dp"
@@ -184,7 +186,8 @@
         app:fabCustomSize="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="@dimen/margin_of_fabs_player"
         android:src="@drawable/ic_next"
         android:backgroundTint="@android:color/black"
         app:borderWidth="0dp"
@@ -200,8 +203,29 @@
         android:layout_margin="8dp"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/fabBackId"
-        app:layout_constraintEnd_toStartOf="@id/fabAddAllId"
+        app:layout_constraintEnd_toStartOf="@id/durationCurrentId"
         app:layout_constraintBottom_toBottomOf="@id/fabBackId"
         app:layout_constraintTop_toTopOf="@id/fabBackId"/>
+
+    <TextView
+        android:id="@+id/durationCurrentId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toEndOf="@id/nameMusicIsPlayingId"
+        app:layout_constraintEnd_toStartOf="@id/fabAddAllId"
+        app:layout_constraintTop_toTopOf="@id/fabBackId"
+        app:layout_constraintBottom_toBottomOf="@id/fabBackId"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:progressTint="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fabBackId"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

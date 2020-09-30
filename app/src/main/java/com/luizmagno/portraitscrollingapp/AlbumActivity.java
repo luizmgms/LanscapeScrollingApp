@@ -7,6 +7,7 @@ import androidx.core.content.res.ResourcesCompat;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luizmagno.portraitscrollingapp.utils.Music;
 import com.luizmagno.portraitscrollingapp.utils.MusicAdapter;
 import com.luizmagno.portraitscrollingapp.utils.PlayListAdapter;
+import com.luizmagno.portraitscrollingapp.utils.Utilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +40,10 @@ public class AlbumActivity extends AppCompatActivity {
     private boolean pause = false;
     private int currentSongIndex = 0;
     private TextView nameMusicIsPlaying;
+    private ProgressBar progressBar;
+    private Handler mHandler = new Handler();
+    private Utilities utils = new Utilities();
+    private TextView durationCurrent;
 
     private FloatingActionButton fabPlayList;
 
@@ -67,6 +74,8 @@ public class AlbumActivity extends AppCompatActivity {
         FloatingActionButton fabNext = findViewById(R.id.fabNextId);
         FloatingActionButton fabPrevious = findViewById(R.id.fabPreviousId);
         nameMusicIsPlaying = findViewById(R.id.nameMusicIsPlayingId);
+        progressBar = findViewById(R.id.progressBar);
+        durationCurrent = findViewById(R.id.durationCurrentId);
 
         //Set Capa
         if (pathCapaAlbum.equals("")) {
@@ -81,6 +90,7 @@ public class AlbumActivity extends AppCompatActivity {
         fabBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mHandler.removeCallbacks(mUpdateTimeTask);
                 AlbumActivity.super.onBackPressed();
             }
         });
@@ -165,6 +175,11 @@ public class AlbumActivity extends AppCompatActivity {
                     stop = true;
                     pause = false;
                     currentSongIndex = 0;
+                    fabPlayList.setImageResource(R.drawable.ic_play);
+                    mHandler.removeCallbacks(mUpdateTimeTask);
+                    progressBar.setProgress(0);
+                    durationCurrent.setText("");
+                    nameMusicIsPlaying.setText("");
                     notifyPlayListAdapter();
                 } else {
                     //Não é a última então toque a próxima música
@@ -243,25 +258,18 @@ public class AlbumActivity extends AppCompatActivity {
             //Notify Adapter para mudança de cor do texto
             notifyPlayListAdapter();
 
-            //Increment Index
-            //currentSongIndex++;
-
             // Displaying Song title
-            //String songTitle = songsList.get(songIndex).get("songTitle");
-            //songTitleLabel.setText(songTitle);
+            nameMusicIsPlaying.setText(playListMusics.get(songIndex).getNameMusic());
 
             // Changing Button Image to pause image
             fabPlayList.setImageResource(R.drawable.ic_pause);
 
-            //Changing Text music playing
-            nameMusicIsPlaying.setText(playListMusics.get(songIndex).getNameMusic());
-
             // set Progress bar values
-            //songProgressBar.setProgress(0);
-            //songProgressBar.setMax(100);
+            progressBar.setProgress(0);
+            progressBar.setMax(100);
 
             // Updating progress bar
-            //updateProgressBar();
+            updateProgressBar();
 
         } catch (IllegalArgumentException | IllegalStateException | IOException e) {
             e.printStackTrace();
@@ -376,6 +384,39 @@ public class AlbumActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Update timer on progressBar
+     * */
+    public void updateProgressBar() {
+        mHandler.postDelayed(mUpdateTimeTask, 50);
+    }
+
+    /**
+     * Background Runnable thread
+     * */
+    private Runnable mUpdateTimeTask = new Runnable() {
+        public void run() {
+            long totalDuration = mp.getDuration();
+            long currentDuration = mp.getCurrentPosition();
+
+            // Displaying Total Duration time ans time completed
+            String total = utils.milliSecondsToTimer(totalDuration);
+            String atual = utils.milliSecondsToTimer(currentDuration);
+            String time = atual+"/"+total;
+            durationCurrent.setText(time);
+
+            // Updating progress bar
+            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
+            //Log.d("Progress", ""+progress);
+            progressBar.setProgress(progress);
+
+            // Running this thread after 100 milliseconds
+            mHandler.postDelayed(this, 50);
+        }
+    };
+
+
+
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
@@ -395,6 +436,7 @@ public class AlbumActivity extends AppCompatActivity {
     public void onDestroy(){
         super.onDestroy();
         mp.release();
+        mHandler.removeCallbacks(mUpdateTimeTask);
     }
 
 }
