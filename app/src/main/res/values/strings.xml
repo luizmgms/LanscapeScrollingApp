@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">PortraitScrollingApp</string>
+    <string name="capa">Capa Álbum</string>
+    <string name="left">Esquerda</string>
+    <string name="rigth">Direita</string>
+    <string name="touch">Escolher</string>
+    <string name="fundoCapa">Fundo da Capa</string>
+    <string name="back">Voltar</string>
+    <string name="up">Cima</string>
+    <string name="down">Baixo</string>
+    <string name="choice">Escolher</string>
+    <string name="play">Tocar</string>
+    <string name="title_album">Título do Álbum</string>
+    <string name="num_of_musics_of_album">Total de 00 Músicas</string>
+    <string name="play_list">Tocar PlayList de Selecionadas</string>
+    <string name="add_all">Adicionar Todas à PlayList de Músicas Selecionadas</string>
+    <string name="nome_da_musica">Nome da Música.mp3</string>
+    <string name="next">Próxima Música</string>
+    <string name="previous">Tocar Música Anterior</string>
+    <string name="musics_of_album">Músicas do Álbum</string>
+    <string name="selecionadas">PlayList</string>
+    <string name="note_music">Nota Musical</string>
+    <string name="music_playing">00 Música que está tocando ou está em pausa</string>
+</resources>

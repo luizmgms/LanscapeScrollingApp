@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabLeftId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_left"
+        android:backgroundTint="@android:color/black"
+        app:borderWidth="0dp"
+        android:contentDescription="@string/left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabRigthId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_rigth"
+        android:backgroundTint="@android:color/black"
+        app:borderWidth="0dp"
+        android:contentDescription="@string/rigth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabTouchId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_touch"
+        android:backgroundTint="@android:color/black"
+        app:borderWidth="0dp"
+        android:contentDescription="@string/touch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/painelId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/creditsId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/albunsId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="8dp"/>
+
+    <ImageView
+        android:id="@+id/fundoCapaId"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_margin="8dp"
+        android:background="@android:color/black"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toBottomOf="@id/albunsId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/fundoCapa"
+        android:elevation="8dp"/>
+
+    <ImageView
+        android:id="@+id/capaId"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:src="@drawable/ic_warning"
+        android:adjustViewBounds="true"
+        android:transitionName="transform"
+        app:layout_constraintTop_toTopOf="@+id/fundoCapaId"
+        app:layout_constraintStart_toStartOf="@+id/fundoCapaId"
+        app:layout_constraintEnd_toEndOf="@id/fundoCapaId"
+        app:layout_constraintBottom_toBottomOf="@+id/fundoCapaId"
+        android:contentDescription="@string/capa"
+        android:elevation="8dp"/>
+
+    <ImageView
+        android:id="@+id/capaLeftId"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="8dp"
+        android:src="@drawable/ic_warning"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fundoCapaId"
+        app:layout_constraintBottom_toBottomOf="@+id/fundoCapaId"
+        android:contentDescription="@string/capa"
+        android:elevation="8dp"/>
+
+    <ImageView
+        android:id="@+id/capaRightId"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="8dp"
+        android:src="@drawable/ic_warning"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toEndOf="@+id/fundoCapaId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fundoCapaId"
+        android:contentDescription="@string/capa"
+        android:elevation="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
